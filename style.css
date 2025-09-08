@@ -1,0 +1,395 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+:root {
+  --text-color: #fdfdfc;              /* Porcelain white */
+  --subheading-color: #96c5b0;        /* Muted mint green */
+  --placeholder-color: #b6a6b1;       /* Dusty mauve */
+  --primary-color: #1e2022;           /* Charcoal black */
+  --secondry-color: #2b2e31;          /* Graphite gray */
+  --secondry-hover-color: #3a3e42;    /* Soft steel gray */
+  --scrollbar-color: #d1bfa7;         /* Sand beige */
+}
+
+body.light-theme {
+  --text-color: #2a2d2f;              /* Warm slate */
+  --subheading-color: #7fa897;        /* Calm sage */
+  --placeholder-color: #8f7d89;       /* Muted lavender-gray */
+  --primary-color: #fafafa;           /* Snow white */
+  --secondry-color: #ebebeb;          /* Light dove gray */
+  --secondry-hover-color: #dcdcdc;    /* Gentle stone */
+  --scrollbar-color: #c4aa91;         /* Soft tan */
+}
+
+
+
+body {
+    background: var(--primary-color);
+    color: var(--text-color);
+
+}
+
+.container {
+    overflow-y: auto;
+    padding: 32px 0 60px;
+    max-height: calc(100vh - 127px);
+    scrollbar-color: var(--scrollbar-color) transparent;
+
+
+}
+
+/* app-header */
+.container :where(.app-header, .suggestions, .prompt-wrapper, .disclaimer-text, .message) {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 980px;
+    padding: 0 20px;
+
+}
+
+.container .app-header {
+    margin: 4vh;
+
+}
+
+.app-header .heading {
+    font-size: 3rem;
+    width: fit-content;
+    background: linear-gradient(to right, #1d7efd, #8f6fff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header .sub-heading {
+    font-size: 2.6rem;
+    margin-top: 10px;
+    color: var(--subheading-color);
+}
+
+/* suggestion styling */
+.container .suggestions {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    margin-top: 9.5vh;
+    list-style: none;
+    scrollbar-width: none;
+
+}
+
+body.chats-active .container :where(.app-header, .suggestions) {
+    display: none;
+}
+
+.suggestions .suggestion-item {
+    padding: 18px;
+    width: 228px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: var(--secondry-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.suggestions .suggestion-item:hover {
+    background: var(--secondry-hover-color);
+}
+
+.suggestions .suggestion-item .text {
+    font-size: 1.1rem;
+
+}
+
+.suggestions .suggestion-item span {
+    height: 45px;
+    width: 45px;
+    background: var(--primary-color);
+    margin-top: 35px;
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #1d7efd;
+
+}
+
+.suggestions .suggestion-item:nth-child(2) span {
+    color: #28a745;
+
+}
+
+.suggestions .suggestion-item:nth-child(3) span {
+    color: #ffc107;
+
+}
+
+.suggestions .suggestion-item:nth-child(4) span {
+    color: #6f42c1;
+
+}
+
+/* prompt- container styling*/
+.prompt-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 0;
+    background: var(--primary-color);
+}
+
+.prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions) {
+    display: flex;
+    gap: 12px;
+    height: 56px;
+    align-items: center;
+
+}
+
+.prompt-wrapper .prompt-form {
+    width: 100%;
+    height: 100%;
+    background: var(--secondry-color);
+    border-radius: 130px;
+
+}
+
+.prompt-form .prompt-input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    padding-left: 24px;
+    color: var(--text-color);
+    font-size: 1rem;
+
+}
+
+.prompt-form .prompt-input::placeholder {
+    color: var(--placeholder-color);
+
+}
+
+.prompt-wrapper button {
+    width: 56px;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    color: var(--text-color);
+    background: var(--secondry-color);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+
+}
+
+.prompt-wrapper button:hover {
+    background: var(--secondry-hover-color);
+}
+
+.prompt-wrapper .prompt-form :where(.file-upload-wrapper, button, img) {
+    position: relative;
+    height: 45px;
+    width: 45px;
+
+
+}
+
+.prompt-form .prompt-actions {
+    gap: 5px;
+    margin-right: 7px;
+
+}
+
+.prompt-form .prompt-input:valid~.prompt-actions #send-prompt-btn {
+    display: block;
+    /* the send prompt button will only be displayed when the input fields contains the value */
+}
+
+.prompt-form #send-prompt-btn {
+    color: #fff;
+    background: #1d7efd;
+    display: none;
+}
+
+.prompt-form #send-prompt-btn:hover {
+    background: #0264e3;
+}
+
+.prompt-form #stop-response-btn,
+body.bot-responding .prompt-form .file-upload-wrapper {
+    display: none;
+}
+
+body.bot-responding .prompt-form #stop-response-btn {
+    display: block;
+
+}
+
+.prompt-form .file-upload-wrapper :where(button, img) {
+    position: absolute;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+
+
+
+}
+
+
+
+.prompt-form :is(#cancel-file-btn, #stop-response-btn):hover {
+    color: #d62939;
+}
+
+.prompt-container .disclaimer-text {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 16px 20px 0;
+    color: var(--placeholder-color);
+}
+
+/* chats container style */
+.container .chats-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.chats-container .message {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+}
+
+.chats-container .message .message-text {
+    padding: 3px 16px;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.chats-container .bot-message .avatar {
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    background: var(--secondry-color);
+    border: 1px solid var(--secondry-hover-color);
+    flex-shrink: 0;
+    padding: 6px;
+    margin-right: -7px;
+    align-self: flex-start;
+}
+
+.chats-container .bot-message.loading .avatar {
+    animation: rotate 3s linear infinite;
+
+}
+
+.chats-container .bot-message .avatar {
+    animation: none;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.chats-container .bot-message {
+    margin: 9px auto;
+}
+
+.chats-container .user-message .message-text {
+    padding: 12px 16px;
+    max-width: 75%;
+    background: var(--secondry-color);
+    border-radius: 13px 13px 3px 13px;
+}
+
+.chats-container .user-message .img-attachment {
+    width: 50%;
+    margin-top: -7px;
+
+    border-radius: 13px 3px 13px 13px;
+}
+
+.chats-container .user-message .file-attachment {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px;
+    margin-top: -7px;
+    border-radius: 13px 3px 13px 13px;
+    background: var(--secondry-color);
+}
+
+.chats-container .user-message .file-attachment span {
+    color: #1d7efd;
+}
+
+.chats-container .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Hide everything by default */
+.file-upload-wrapper .file-preview,
+.file-upload-wrapper .file-icon,
+.file-upload-wrapper #cancel-file-btn {
+    display: none;
+}
+
+/* Attach button visible normally */
+.file-upload-wrapper #add-file-btn {
+    display: block;
+}
+
+/* --- ACTIVE state --- */
+/* Show preview image when only active class is present */
+.file-upload-wrapper.active:not(.file-attached) .file-preview {
+    display: block;
+}
+
+/* Hide attach button in active state */
+.file-upload-wrapper.active:not(.file-attached) #add-file-btn {
+    display: none;
+}
+
+.file-upload-wrapper .active:hover .file-preview {
+    display: none;
+}
+
+.file-upload-wrapper.active:hover #cancel-file-btn {
+    display: block;
+}
+
+/* --- FILE ATTACHED state --- */
+/* Show notes icon when file is attached */
+.file-upload-wrapper.file-attached .file-icon {
+    display: block;
+}
+
+/* Hide attach button in attached state */
+.file-upload-wrapper.file-attached #add-file-btn {
+    display: none;
+}
+
+/* Hover → cross replaces notes icon */
+.file-upload-wrapper.file-attached:hover .file-icon {
+    display: none;
+}
+
+.file-upload-wrapper.file-attached:hover #cancel-file-btn {
+    display: block;
+}

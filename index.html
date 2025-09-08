@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> gemini chatbot</title>
+    <!-- linking google fonts for icon -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <header class="app-header">
+            <h1 class="heading">Hello, There</h1>
+            <h2 class="sub-heading">How can i help you ?</h2>
+        </header>
+        <!-- suggestion list -->
+        <ul class="suggestions">
+            <li class="suggestion-item">
+                <p class="text">Design a home office setup for remote work under 5000.</p>
+                <span class="material-symbols-rounded">draw</span>
+            </li>
+            <li class="suggestion-item">
+                <p class="text">How can I level up my web devlopment expertise in 2025?.</p>
+                <span class="material-symbols-rounded">lightbulb</span>
+            </li>
+            <li class="suggestion-item">
+                <p class="text">Suggest some useful tools for debugging Javascript code.</p>
+                <span class="material-symbols-rounded">explore</span>
+            </li>
+            <li class="suggestion-item">
+                <p class="text">create a react JS component for the simple todo list.</p>
+                <span class="material-symbols-rounded">code_blocks</span>
+            </li>
+        </ul>
+        <!-- chats - container -->
+         <div class="chats-container"></div>
+
+        <!-- prompt-conatiner -->
+        <div class="prompt-container">
+            <div class="prompt-wrapper">
+                <form action="" class="prompt-form">
+                    <input type="text" placeholder="Ask Ai" class="prompt-input" required>
+                    <div class="prompt-actions">
+                       
+                        <!-- file upload wrapper -->
+                        <div class="file-upload-wrapper ">
+                            <img src="download.png" class="file-preview">
+                            <input type="file" accept="image/*, .pdf, .txt, .csv" id="file-input" hidden>
+                            <button type="button"  class="file-icon material-symbols-rounded">description</button>
+                            <button type="button" id="add-file-btn" class="material-symbols-rounded">attach_file</button>
+                            <button type="button" id="cancel-file-btn" class="material-symbols-rounded">close</button>
+                        
+                        </div>
+                        <button type="button" id="stop-response-btn" class="material-symbols-rounded">stop_circle</button>
+                        <button type="button" id="send-prompt-btn" class="material-symbols-rounded">arrow_upward</button>
+         
+                    </div>
+                </form>
+                <button id="theme-toggle-btn" class="material-symbols-rounded">light_mode</button>
+                <button id="delete-chat-btn" class="material-symbols-rounded">delete</button>
+            </div>
+            <p class="disclaimer-text"> This Ai can make mistakes, so double-check</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
